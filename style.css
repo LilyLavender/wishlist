@@ -1,0 +1,294 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+nav {
+  margin-top: 10px;
+  display: inline-flex;
+}
+
+nav button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 1em 2em;
+  margin: 5px 0;
+  cursor: pointer;
+  font-size: 14px;
+
+  transition: background-color .2s ease-in-out;
+}
+
+nav button:first-child {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+nav button:last-child {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+nav button:hover {
+  background-color: #777;
+}
+
+nav button.active {
+  background-color: #0077cc;
+}
+
+#wishlist-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+@media (min-width: 1200px) {
+  #wishlist-container {
+    margin: 0 100px;
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  #wishlist-container {
+    margin: 0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  nav button {
+    padding: 1em;
+  }
+}
+
+.album-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.album-card img {
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.album-info {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.album-info h2 {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+
+.album-info h3 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.album-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.album-info a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.notes {
+  border-radius: 10px;
+  background-color: #00000020;
+  color: #d00000 !important;
+  padding: 0.5em 0.75em;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0.5em auto !important;
+}
+
+.notes i {
+  font-weight: bold;
+  font-size: large;
+  margin-right: 0.5em;
+}
+
+.buy-on {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buy-on a {
+  width: 30%;
+}
+
+.buy-on img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .basic-info {
+    font-size: 12px !important;
+  }
+  .mark-btn {
+    width: min-content !important;
+  }
+}
+
+.mark-btn {
+  padding: 0.5em 0.75em;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin: 0.75em auto 0 auto;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.mark-btn i {
+  font-weight: bold;
+  font-size: large;
+  margin-right: 0.5em;
+}
+
+.mark-purchased-btn {
+  background-color: #59a547;
+}
+
+.unmark-purchased-btn {
+  background-color: #d00000;
+}
+
+.fake-btn {
+  display: inline-flex;
+  pointer-events: none;
+  padding: 0.25em 0.5em;
+}
+
+#controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+  padding-bottom: 0;
+}
+
+#sort-select {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+
+#about-section {
+  text-align: center;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #333;
+}
+
+#about-section a {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+#empty-message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  font-size: 18px;
+  width: fit-content;
+  margin: 40px auto;
+  color: #777;
+}
+
+.wishlist-note,
+.wishlist-instructions {
+  margin: 0 auto 20px auto;
+  max-width: 800px;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+.wishlist-note {
+  text-align: center;
+  font-size: 17px;
+}
+
+.wishlist-note a {
+  color: #0077cc;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.wishlist-note a:hover {
+  color: #005fa3;
+  text-decoration: underline;
+}
+
+.wishlist-instructions > p:first-of-type {
+  margin-top: 0;
+}
+
+.wishlist-instructions > p:last-of-type {
+  margin-bottom: 0;
+}
+
+.wishlist-instructions {
+  margin-bottom: 40px;
+  border-radius: 6px;
+  padding: 15px 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.yellow {
+  background: #fff8e6;
+  border-left: 5px solid #ffbb33;
+}
+
+.green {
+  background: #e9f7ef;
+  border-left: 5px solid #28a745;
+}
+
+.wishlist-instructions p {
+  margin: 10px 0;
+}
+
+.red {
+  color: #d62828;
+  font-weight: bold;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist - Lily</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <header>
+    <h1>Lily's Wishlist</h1>
+    <nav>
+      <button id="about-tab" class="active">About</button>
+      <button id="cd-tab">CD Wishlist</button>
+      <button id="vinyl-tab">Vinyl Wishlist</button>
+      <button id="purchased-tab">Purchased</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="about-section">
+      <p class="wishlist-note">
+        For my <strong>Amazon wishlist</strong>, click 
+        <a href="https://www.amazon.com/hz/wishlist/ls/18NWVRM05EF5?ref_=wl_share" target="_blank">here</a>.
+      </p>
+
+      <div class="wishlist-instructions yellow">
+        <p>
+          If you purchase something, please 
+          <button class="mark-btn fake-btn mark-purchased-btn">
+            <i class="bi bi-check-square"></i><span> Mark as Purchased</span>
+          </button>. 
+        </p>
+        <p>
+          It will hide the item for everyone else, 
+          and <span class="red">I won’t be able to see what was purchased!</span>
+        </p>
+        <p>
+          Made a mistake? Simply go to the <strong>“Purchased”</strong> tab and 
+          <button class="mark-btn fake-btn unmark-purchased-btn">
+            <i class="bi bi-x-square"></i><span> Unmark as Purchased</span>
+          </button>.
+        </p>
+      </div>
+
+      <p class="wishlist-instructions green">
+        <strong>Discogs</strong> often has the best prices for CDs, although it requires an account and some sellers have order minimums.  
+        It works best on desktop.  
+        If you'd rather not bother with Discogs, you can always give me cash and let me deal with it.
+      </p>
+    </div>
+
+    <div id="controls">
+      <label for="sort-select">Sort by:</label>
+      <select id="sort-select">
+        <option value="default">Default</option>
+        <option value="price">Price</option>
+        <option value="year">Year</option>
+        <option value="genre">Genre</option>
+        <option value="artist">Artist</option>
+      </select>
+    </div>
+
+    <div id="wishlist-container"></div>
+  </main>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Firebase v8 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.0/firebase.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.10.0/firebase-firestore.min.js"></script>
+
+  <!-- Firebase config -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDxa4HXtjSH-_npR3EwcL22qqY2F5eLCpQ",
+      authDomain: "wishlist-6eeb7.firebaseapp.com",
+      projectId: "wishlist-6eeb7",
+      storageBucket: "wishlist-6eeb7.firebasestorage.app",
+      messagingSenderId: "106765746555",
+      appId: "1:106765746555:web:2e920c446e8579ca22bdde"
+    };
+    firebase.initializeApp(firebaseConfig);
+    window.db = firebase.firestore();
+  </script>
+
+  <script src="./script.js"></script>
+</body>
+</html>

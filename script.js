@@ -2,23 +2,28 @@ $(document).ready(function() {
   const $container = $("#wishlist-container");
   const $cdTab = $("#cd-tab");
   const $vinylTab = $("#vinyl-tab");
+  const $elseTab = $("#else-tab");
   const $purchasedTab = $("#purchased-tab");
   const $aboutTab = $("#about-tab");
   const $aboutSection = $("#about-section");
+  const $elseSection = $("#else-section");
   const $sortSelect = $("#sort-select");
 
-  let wishlist = { cd: [], vinyl: [] };
+  let wishlist = { cd: [], vinyl: [], else: [] };
   let purchasedIds = new Set();
   let currentView = "about";
 
   function loadJsonFiles(callback) {
-    let cdLoaded = false, vinylLoaded = false;
+    let cdLoaded = false, vinylLoaded = false, elseLoaded = false;
 
-    $.getJSON("wishlist-cd.json", data => { wishlist.cd = data; cdLoaded = true; if(cdLoaded && vinylLoaded) callback(); })
+    $.getJSON("wishlist-cd.json", data => { wishlist.cd = data; cdLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
       .fail(() => console.error("Failed to load wishlist-cd.json"));
 
-    $.getJSON("wishlist-vinyl.json", data => { wishlist.vinyl = data; vinylLoaded = true; if(cdLoaded && vinylLoaded) callback(); })
+    $.getJSON("wishlist-vinyl.json", data => { wishlist.vinyl = data; vinylLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
       .fail(() => console.error("Failed to load wishlist-vinyl.json"));
+
+    $.getJSON("wishlist-else.json", data => { wishlist.else = data; elseLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
+      .fail(() => console.error("Failed to load wishlist-else.json"));
   }
 
   function loadPurchasedIds(callback) {
@@ -132,15 +137,39 @@ $(document).ready(function() {
       $container.append(albumHtml);
     });
   }
+  
+  function renderElseItems(items) {
+    $container.empty();
+
+    items.forEach(item => {
+      const notesHtml = item.notes
+        ? `<p class="notes"><i class="bi bi-exclamation-triangle"></i><span>${item.notes}</span></p>`
+        : "";
+
+      const html = `
+        <div class="album-card else-card">
+          <img src="${item.image_url}" alt="${item.name}">
+          <div class="album-info">
+            <h2>${item.name}</h2>
+            ${notesHtml}
+          </div>
+        </div>
+      `;
+
+      $container.append(html);
+    });
+  }
 
   function showCD() {
     currentView = "cd";
     $cdTab.addClass("active");
     $vinylTab.removeClass("active");
+    $elseTab.removeClass("active");
     $purchasedTab.removeClass("active");
     $aboutTab.removeClass("active");
 
     $aboutSection.addClass("hidden");
+    $elseSection.addClass("hidden");
     $("#controls").show();
 
     renderItems(wishlist.cd.map(a => ({ ...a, format: "CD" })));
@@ -150,13 +179,30 @@ $(document).ready(function() {
     currentView = "vinyl";
     $vinylTab.addClass("active");
     $cdTab.removeClass("active");
+    $elseTab.removeClass("active");
     $purchasedTab.removeClass("active");
     $aboutTab.removeClass("active");
 
     $aboutSection.addClass("hidden");
+    $elseSection.addClass("hidden");
     $("#controls").show();
 
     renderItems(wishlist.vinyl.map(a => ({ ...a, format: "Vinyl" })));
+  }
+
+  function showElse() {
+    currentView = "else";
+    $elseTab.addClass("active");
+    $cdTab.removeClass("active");
+    $vinylTab.removeClass("active");
+    $purchasedTab.removeClass("active");
+    $aboutTab.removeClass("active");
+
+    $elseSection.removeClass("hidden");
+    $aboutSection.addClass("hidden");
+    $("#controls").hide();
+
+    renderElseItems(wishlist.else);
   }
 
   function showPurchased() {
@@ -164,14 +210,17 @@ $(document).ready(function() {
     $purchasedTab.addClass("active");
     $cdTab.removeClass("active");
     $vinylTab.removeClass("active");
+    $elseTab.removeClass("active");
     $aboutTab.removeClass("active");
 
+    $elseSection.addClass("hidden");
     $aboutSection.addClass("hidden");
     $("#controls").show();
 
     const allItems = [
       ...wishlist.cd.map(a => ({ ...a, format: "CD" })),
       ...wishlist.vinyl.map(a => ({ ...a, format: "Vinyl" })),
+      ...wishlist.else.map(a => ({ ...a, format: "Else" })),
     ];
     const purchasedItems = allItems.filter(a =>
       purchasedIds.has(`${a.master_id}-${a.format.toLowerCase()}`)
@@ -189,21 +238,25 @@ $(document).ready(function() {
     $aboutTab.addClass("active");
     $cdTab.removeClass("active");
     $vinylTab.removeClass("active");
+    $elseTab.removeClass("active");
     $purchasedTab.removeClass("active");
 
     $aboutSection.removeClass("hidden");
+    $elseSection.addClass("hidden");
     $container.empty();
     $("#controls").hide();
   }
 
   $cdTab.on("click", () => showCD());
   $vinylTab.on("click", () => showVinyl());
+  $elseTab.on("click", () => showElse());
   $purchasedTab.on("click", () => loadPurchasedIds(showPurchased));
   $aboutTab.on("click", () => showAbout());
 
   $sortSelect.on("change", () => {
     if (currentView === "cd") showCD();
     else if (currentView === "vinyl") showVinyl();
+    else if (currentView === "else") showElse();
     else if (currentView === "purchased") showPurchased();
   });
 

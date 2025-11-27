@@ -72,7 +72,7 @@ nav button.active {
     grid-template-columns: repeat(2, 1fr);
   }
   nav button {
-    padding: 1em;
+    padding: 0.5em;
   }
 }
 
@@ -211,7 +211,7 @@ nav button.active {
   display: none;
 }
 
-#about-section {
+#about-section, #else-section {
   text-align: center;
   padding: 30px;
   max-width: 600px;
@@ -220,7 +220,7 @@ nav button.active {
   color: #333;
 }
 
-#about-section a {
+#about-section a, #else-section a {
   color: #0077cc;
   text-decoration: underline;
 }

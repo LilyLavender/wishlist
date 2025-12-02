@@ -146,6 +146,39 @@
     "notes": ""
   },
   {
+    "artist": "Billy Joel",
+    "album": "Piano Man",
+    "year": 1973,
+    "genre": "Rock",
+    "cover_url": "https://i.discogs.com/Fo-gJZFeUkLhMZrdTCNxYrCmKETu91cL9y9jI0zs7tQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2NzQx/MTktMTM3MzU4ODk1/NS02NjEyLmpwZWc.jpeg",
+    "master_id": "56943",
+    "expected_cost_min": 3,
+    "expected_cost_max": 8,
+    "notes": ""
+  },
+  {
+    "artist": "Billy Joel",
+    "album": "Streetlife Serenade",
+    "year": 1974,
+    "genre": "Rock",
+    "cover_url": "https://i.discogs.com/upIaVtAbtZ9Ss8cf7wYYHMKRKYwG9Qg04JjDRlgc3vU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5OTE0/MjMtMTM1MjAzMTU5/NC05MTU3LmpwZWc.jpeg",
+    "master_id": "56963",
+    "expected_cost_min": 5,
+    "expected_cost_max": 10,
+    "notes": ""
+  },
+  {
+    "artist": "Billy Joel",
+    "album": "The Nylon Curtain",
+    "year": 1982,
+    "genre": "Rock",
+    "cover_url": "https://i.discogs.com/R-fNM5XzyO9CR9auSaL04skkL0KXMxctydDN639woFs/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NTcx/MjQtMTM2OTA0ODc3/NC04MDQyLmpwZWc.jpeg",
+    "master_id": "72046",
+    "expected_cost_min": 3,
+    "expected_cost_max": 8,
+    "notes": ""
+  },
+  {
     "artist": "Nelly",
     "album": "Da Derrty Versions (The Reinvention)",
     "year": 2003,

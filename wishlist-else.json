@@ -20,6 +20,16 @@
     "notes": "Specifically the standard peanut butter cups with ridges, not any of the holiday ones"
   },
   {
+    "name": "Milka Strawberry",
+    "image_url": "https://mezehub.com/cdn/shop/products/mil11021_1.jpg?v=1587588580",
+    "notes": ""
+  },
+  {
+    "name": "Milka Oreo",
+    "image_url": "https://www.chocolateandmoredelights.com/cdn/shop/files/MilkaOreo-Chocolate_MoreDelights.jpg?v=1760798574&width=480",
+    "notes": ""
+  },
+  {
     "name": "Culver's Gift Card",
     "image_url": "https://giftinventory.com/img/3920.png",
     "notes": ""
@@ -37,6 +47,11 @@
   {
     "name": "Barnes and Noble Gift Card",
     "image_url": "https://images.cdn.retail.brookshires.com/detail/00076750215605_C1C1.jpeg",
+    "notes": ""
+  },
+  {
+    "name": "Amazon Gift Card",
+    "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6545/6545180_sd.jpg;maxHeight=1920;maxWidth=900?format=webp",
     "notes": ""
   },
   {

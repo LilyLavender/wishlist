@@ -1,307 +1,353 @@
-$(document).ready(function() {
-  const $container = $("#wishlist-container");
-  const $cdTab = $("#cd-tab");
-  const $vinylTab = $("#vinyl-tab");
-  const $elseTab = $("#else-tab");
-  const $purchasedTab = $("#purchased-tab");
-  const $aboutTab = $("#about-tab");
-  const $aboutSection = $("#about-section");
-  const $elseSection = $("#else-section");
-  const $sortSelect = $("#sort-select");
+const CATEGORIES = {
+  music: "Music",
+  clothes: "Clothes",
+  fragrance: "Fragrance",
+  tech: "Tech",
+  collectibles: "Collectibles",
+  snacks: "Snacks",
+  giftcards: "Gift cards",
+};
 
-  let wishlist = { cd: [], vinyl: [], else: [] };
-  let purchasedIds = new Set();
-  let currentView = "about";
+const RATINGS = {
+  like: { label: "Like", icon: "bi-emoji-smile-fill" },
+  ok: { label: "It's okay", icon: "bi-emoji-neutral-fill" },
+  dislike: { label: "Don't like", icon: "bi-emoji-frown-fill" },
+};
 
-  function loadJsonFiles(callback) {
-    let cdLoaded = false, vinylLoaded = false, elseLoaded = false;
+const state = {
+  items: [],
+  purchased: new Set(),
+  justMarked: new Set(),
+  search: "",
+  category: "all",
+  sort: "default",
+};
 
-    $.getJSON("wishlist-cd.json", data => { wishlist.cd = data; cdLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
-      .fail(() => console.error("Failed to load wishlist-cd.json"));
+const $ = id => document.getElementById(id);
+const grid = $("grid");
+const dialog = $("dialog");
+let openItem = null;
 
-    $.getJSON("wishlist-vinyl.json", data => { wishlist.vinyl = data; vinylLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
-      .fail(() => console.error("Failed to load wishlist-vinyl.json"));
+function el(tag, props = {}, ...children) {
+  const node = Object.assign(document.createElement(tag), props);
+  node.append(...children.filter(c => c != null && c !== false));
+  return node;
+}
 
-    $.getJSON("wishlist-else.json", data => { wishlist.else = data; elseLoaded = true; if(cdLoaded && vinylLoaded && elseLoaded) callback(); })
-      .fail(() => console.error("Failed to load wishlist-else.json"));
-  }
+function money(n) {
+  return "$" + (Number.isInteger(n) ? n : n.toFixed(2));
+}
 
-  function loadPurchasedIds(callback) {
-    db.collection("purchases").get().then(snapshot => {
-      purchasedIds.clear();
-      snapshot.forEach(doc => {
-        if(doc.data().purchased) purchasedIds.add(doc.id);
-      });
-      if(callback) callback();
-    });
-  }
+function priceText(item) {
+  if (item.price == null) return "";
+  return item.price_max != null ? `${money(item.price)}–${money(item.price_max)}` : money(item.price);
+}
 
-  function sortItems(items) {
-    const sortBy = $sortSelect.val();
+function midPrice(item) {
+  if (item.price == null) return null;
+  return (item.price + (item.price_max ?? item.price)) / 2;
+}
 
-    switch (sortBy) {
-      case "price":
-        return [...items].sort((a, b) => {
-          const avgA = ((a.expected_cost_min ?? 0) + (a.expected_cost_max ?? 0)) / 2;
-          const avgB = ((b.expected_cost_min ?? 0) + (b.expected_cost_max ?? 0)) / 2;
-        
-          if (avgA === 0 && avgB !== 0) return 1;
-          if (avgB === 0 && avgA !== 0) return -1;
-        
-          return avgA - avgB;
-        });
-      case "year":
-        return [...items].sort((a, b) => (a.year ?? 0) - (b.year ?? 0));
-      case "genre":
-        return [...items].sort((a, b) => (a.genre || "").localeCompare(b.genre || ""));
-      case "artist":
-        return [...items].sort((a, b) => (a.artist || "").localeCompare(b.artist || ""));
-      default:
-        return items;
+const isPurchased = item => !item.unlimited && state.purchased.has(item.id);
+
+function priceTag(item) {
+  return item.price != null ? [el("span", { className: "tag tag-price" }, priceText(item))] : [];
+}
+
+function title(item) {
+  return [item.category === "music" && el("span", { className: "cd-tag" }, "CD"), item.name];
+}
+
+// Handle setting background color for cards with images
+const bgCache = new Map();
+function edgeColor(img) {
+  const n = 24;
+  const ctx = Object.assign(document.createElement("canvas"), { width: n, height: n }).getContext("2d", { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, n, n);
+  const data = ctx.getImageData(0, 0, n, n).data;
+  const buckets = new Map();
+  let total = 0;
+  for (let i = 0; i < n; i++) {
+    for (const [x, y] of [[i, 0], [i, n - 1], [0, i], [n - 1, i]]) {
+      const o = (y * n + x) * 4;
+      if (data[o + 3] < 200) continue;
+      const px = [data[o], data[o + 1], data[o + 2]];
+      const key = px.map(v => v >> 5).join();
+      if (!buckets.has(key)) buckets.set(key, []);
+      buckets.get(key).push(px);
+      total++;
     }
   }
+  const top = [...buckets.values()].sort((a, b) => b.length - a.length)[0];
+  if (!top || top.length < total * 0.6) return null;
+  const avg = [0, 1, 2].map(k => Math.round(top.reduce((sum, px) => sum + px[k], 0) / top.length));
+  return `rgb(${avg})`;
+}
 
-  function renderItems(items, showUnmark = false) {
-    $container.empty();
-    const sortedItems = sortItems(items);
+function matchBackground(item, img, box) {
+  box.style.background = bgCache.get(item.id) || "";
+  if (bgCache.has(item.id)) return;
+  img.addEventListener("load", () => {
+    if (!img.src.endsWith(item.image)) return;
+    try { bgCache.set(item.id, edgeColor(img)); } catch { bgCache.set(item.id, null); }
+    box.style.background = bgCache.get(item.id) || "";
+  }, { once: true });
+}
 
-    sortedItems.forEach(album => {
-      const format = album.format || "";
-      const albumId = `${album.master_id}-${format.toLowerCase()}`;
-      const isPurchased = purchasedIds.has(albumId);
+const entry = e => typeof e === "string" ? { name: e } : e;
 
-      if(isPurchased && !showUnmark) return;
+function searchText(item) {
+  const list = (item.list || []).map(e => entry(e).name);
+  const tried = Object.values(item.tried || {}).flat().map(t => t.name);
+  return [item.name, item.notes, ...list, ...tried].join(" ").toLowerCase();
+}
 
-      const yearHtml = album.year ? `${album.year} • ` : "";
-      const genreHtml = album.genre ? `${album.genre}` : "";
-      const priceHtml =
-        album.expected_cost_min !== undefined && album.expected_cost_max !== undefined
-          ? ` • $${album.expected_cost_min} - $${album.expected_cost_max}`
-          : "";
+function listRow(e) {
+  const { name, note } = entry(e);
+  return el("li", { className: "list-row" },
+    el("span", { className: "list-marker" }),
+    el("span", { className: "list-text" },
+      el("span", { className: "list-name" }, name),
+      note && el("span", { className: "list-note" }, note),
+    ),
+  );
+}
 
-      const notesHtml = album.notes
-        ? `<p class="notes"><i class="bi bi-exclamation-triangle"></i><span>${album.notes}</span></p>`
-        : "";
+function triedGroups(tried) {
+  return Object.entries(RATINGS).filter(([key]) => tried[key]?.length).map(([key, r]) =>
+    el("section", { className: "tried rated-" + key },
+      el("h3", { className: "tried-title" }, el("i", { className: "bi " + r.icon }), " " + r.label),
+      el("ul", { className: "tried-grid" },
+        ...tried[key].map(t => el("li", { title: t.name },
+          el("img", { src: t.image, alt: t.name, loading: "lazy" }),
+        )),
+      ),
+    ),
+  );
+}
 
-      const artistClean = album.artist.replace(/["'\/]/g, "");
-      const albumClean = album.album.replace(/["'\/]/g, "");
-      const encodedURI = encodeURIComponent(`${artistClean} ${albumClean} ${format}`);
+const linkText = url => /ebay\./.test(url) ? "Find on eBay" : "Go to store";
 
-      const amazonHtml = album.not_on_amazon
-        ? ""
-        : `<a href="https://www.amazon.com/s?k=${encodedURI}" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon">
-           </a>`;
+function visibleItems() {
+  const q = state.search.trim().toLowerCase();
+  const list = state.items.filter(item =>
+    (!isPurchased(item) || state.justMarked.has(item.id)) &&
+    (state.category === "all" || item.category === state.category) &&
+    (!q || searchText(item).includes(q))
+  );
 
-      const ebayHtml = album.not_on_ebay
-        ? ""
-        : `<a href="https://www.ebay.com/sch/i.html?_nkw=${encodedURI}" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/EBay_logo.svg/1200px-EBay_logo.svg.png" alt="Ebay">
-           </a>`;
-
-      const discogsLink = album.no_master
-        ? `<a href="https://www.discogs.com/sell/release/${album.master_id}?ships_from=United+States&sort=price%2Casc" target="_blank">
-             <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Discogs_logo_black.svg" alt="Discogs">
-           </a>`
-        : `<a href="https://www.discogs.com/sell/list?master_id=${album.master_id}&sort=price%2Casc&limit=100&ships_from=United+States&format=${format}" target="_blank">
-             <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Discogs_logo_black.svg" alt="Discogs">
-           </a>`;
-
-      const btnHtml = showUnmark
-        ? `<button class="mark-btn unmark-purchased-btn"><i class="bi bi-x-square"></i><span>Unmark as Purchased</span></button>`
-        : !isPurchased
-        ? `<button class="mark-btn mark-purchased-btn"><i class="bi bi-check-square"></i><span>Mark as Purchased</span></button>`
-        : "";
-
-      const purchasedStatus = isPurchased ? "✅ Purchased" : "";
-
-      const albumHtml = `
-        <div class="album-card" data-id="${albumId}">
-          <img src="${album.cover_url}" alt="${album.album} cover">
-          <div class="album-info">
-            <h2>${album.album}</h2>
-            <h3>${album.artist}</h3>
-            <p class="basic-info">${yearHtml}${genreHtml}${priceHtml}</p>
-            <p>Buy on...</p>
-            <div class="buy-on">
-              ${discogsLink}
-              ${amazonHtml}
-              ${ebayHtml}
-            </div>
-            ${notesHtml}
-            ${btnHtml}
-            <p class="purchase-status">${purchasedStatus}</p>
-          </div>
-        </div>
-      `;
-      $container.append(albumHtml);
+  if (state.sort === "name") return list.sort((a, b) => a.name.localeCompare(b.name));
+  if (state.sort.startsWith("price")) {
+    const dir = state.sort === "price-asc" ? 1 : -1;
+    return list.sort((a, b) => {
+      const pa = midPrice(a), pb = midPrice(b);
+      if (pa == null || pb == null) return (pa == null) - (pb == null);
+      return (pa - pb) * dir;
     });
   }
-  
-  function renderElseItems(items) {
-    $container.empty();
+  return list;
+}
 
-    items.forEach(item => {
-      const notesHtml = item.notes
-        ? `<p class="notes"><i class="bi bi-exclamation-triangle"></i><span>${item.notes}</span></p>`
-        : "";
+function card(item) {
+  const img = el("img", { src: item.image, alt: "", loading: "lazy" });
+  const media = el("span", { className: "card-media" }, img);
+  matchBackground(item, img, media);
+  const purchased = isPurchased(item);
+  const btn = el("button", { className: "card" + (purchased ? " is-purchased" : "") + (item.catchall ? " is-catchall" : ""), type: "button" },
+    media,
+    el("span", { className: "card-body" },
+      el("span", { className: "card-title" }, ...title(item)),
+      el("span", { className: "tags" },
+        ...priceTag(item),
+        item.catchall && el("span", { className: "tag tag-list" }, el("i", { className: "bi bi-list-ul" }), " See list"),
+        purchased && el("span", { className: "tag tag-purchased" }, el("i", { className: "bi bi-check2" }), " Purchased"),
+      ),
+    ),
+  );
+  btn.addEventListener("click", () => openDialog(item));
+  return btn;
+}
 
-      const html = `
-        <div class="album-card else-card">
-          <img src="${item.image_url}" alt="${item.name}">
-          <div class="album-info">
-            <h2>${item.name}</h2>
-            ${notesHtml}
-          </div>
-        </div>
-      `;
+function render() {
+  const items = visibleItems();
+  grid.replaceChildren(...items.map(card));
+  $("empty").hidden = items.length > 0;
+}
 
-      $container.append(html);
+function renderChips() {
+  const chip = (label, active, onClick, extra = {}) => {
+    const b = el("button", { type: "button", className: "chip" + (active ? " active" : ""), ...extra }, ...label);
+    b.setAttribute("aria-pressed", active);
+    b.addEventListener("click", onClick);
+    return b;
+  };
+  const setCategory = key => () => { state.category = key; renderChips(); render(); };
+
+  $("chips").replaceChildren(
+    chip(["All"], state.category === "all", setCategory("all")),
+    ...Object.entries(CATEGORIES).map(([key, label]) => chip([label], state.category === key, setCategory(key))),
+  );
+}
+
+function renderPurchased() {
+  const items = state.items.filter(isPurchased);
+  $("purchased-list").replaceChildren(
+    ...(items.length ? items.map(item => {
+      const unmark = el("button", { type: "button", className: "btn btn-ghost btn-sm" }, el("i", { className: "bi bi-x-square" }), " Unmark");
+      unmark.addEventListener("click", () => setPurchased(item, false));
+      return el("li", { className: "purchased-row" },
+        el("img", { src: item.image, alt: "", loading: "lazy" }),
+        el("span", { className: "purchased-name" }, item.name),
+        unmark,
+      );
+    }) : [el("li", { className: "purchased-empty" }, "Nothing purchased yet!")]),
+  );
+}
+
+let galleryTimer = null, galleryFade = null;
+function startGallery(images) {
+  const img = $("dialog-img");
+  images.forEach(src => { new Image().src = src; }); 
+  let i = 0;
+  galleryTimer = setInterval(() => {
+    i = (i + 1) % images.length;
+    img.classList.add("fading");
+    galleryFade = setTimeout(() => {
+      img.addEventListener("load", () => img.classList.remove("fading"), { once: true });
+      img.src = images[i];
+    }, 250);
+  }, 1800);
+}
+function stopGallery() {
+  clearInterval(galleryTimer);
+  clearTimeout(galleryFade);
+  $("dialog-img").classList.remove("fading");
+}
+
+function openDialog(item) {
+  openItem = item;
+  stopGallery();
+  $("dialog-media").classList.toggle("is-catchall", !!item.catchall);
+  if (item.images) {
+    $("dialog-img").src = item.images[0];
+    $("dialog-media").style.background = "";
+    startGallery(item.images);
+  } else {
+    $("dialog-img").src = item.image;
+    matchBackground(item, $("dialog-img"), $("dialog-media"));
+  }
+  $("dialog-list").replaceChildren(...(item.list || []).map(listRow));
+  $("dialog-list").hidden = !item.list;
+  $("dialog-tried").replaceChildren(
+    el("p", { className: "tried-intro" }, "Ones I've already tried, so ", el("strong", {}, "no need"), " to get me samples of these:"),
+    ...triedGroups(item.tried || {}),
+  );
+  $("dialog-tried").hidden = !item.tried;
+  $("dialog-category").textContent = CATEGORIES[item.category];
+  $("dialog-title").replaceChildren(...title(item).filter(Boolean).map(t => typeof t === "string" ? t.replace(/\s*\(read description\)/i, "") : t));
+  $("dialog-tags").replaceChildren(...priceTag(item));
+  $("dialog-notes").textContent = item.notes;
+  $("dialog-notes").hidden = !item.notes;
+  $("dialog-link").hidden = !item.url;
+  if (item.url) {
+    $("dialog-link").href = item.url;
+    $("dialog-link").replaceChildren(linkText(item.url) + " ", el("i", { className: "bi bi-box-arrow-up-right" }));
+  }
+  const purchased = isPurchased(item);
+  $("dialog-mark").hidden = item.unlimited;
+  $("dialog-mark").replaceChildren(
+    el("i", { className: purchased ? "bi bi-x-square" : "bi bi-check2-square" }),
+    purchased ? " Unmark as Purchased" : " Mark as Purchased",
+  );
+  dialog.showModal();
+}
+
+async function getIp() {
+  try {
+    const res = await fetch("https://api.ipify.org?format=json", { signal: AbortSignal.timeout(4000) });
+    return (await res.json()).ip;
+  } catch {
+    return "unknown";
+  }
+}
+
+async function logHistory(item, purchased) {
+  try {
+    await db.collection("purchase_history").add({
+      item: item.id,
+      name: item.name,
+      action: purchased ? "marked" : "unmarked",
+      ip: await getIp(),
+      at: firebase.firestore.FieldValue.serverTimestamp(),
     });
+  } catch (err) {
+    console.warn("Couldn't save purchase history", err);
   }
+}
 
-  function showCD() {
-    currentView = "cd";
-    $cdTab.addClass("active");
-    $vinylTab.removeClass("active");
-    $elseTab.removeClass("active");
-    $purchasedTab.removeClass("active");
-    $aboutTab.removeClass("active");
-
-    $aboutSection.addClass("hidden");
-    $elseSection.addClass("hidden");
-    $("#controls").show();
-
-    renderItems(wishlist.cd.map(a => ({ ...a, format: "CD" })));
-  }
-
-  function showVinyl() {
-    currentView = "vinyl";
-    $vinylTab.addClass("active");
-    $cdTab.removeClass("active");
-    $elseTab.removeClass("active");
-    $purchasedTab.removeClass("active");
-    $aboutTab.removeClass("active");
-
-    $aboutSection.addClass("hidden");
-    $elseSection.addClass("hidden");
-    $("#controls").show();
-
-    renderItems(wishlist.vinyl.map(a => ({ ...a, format: "Vinyl" })));
-  }
-
-  function showElse() {
-    currentView = "else";
-    $elseTab.addClass("active");
-    $cdTab.removeClass("active");
-    $vinylTab.removeClass("active");
-    $purchasedTab.removeClass("active");
-    $aboutTab.removeClass("active");
-
-    $elseSection.removeClass("hidden");
-    $aboutSection.addClass("hidden");
-    $("#controls").hide();
-
-    renderElseItems(wishlist.else);
-  }
-
-  function showPurchased() {
-    currentView = "purchased";
-    $purchasedTab.addClass("active");
-    $cdTab.removeClass("active");
-    $vinylTab.removeClass("active");
-    $elseTab.removeClass("active");
-    $aboutTab.removeClass("active");
-
-    $elseSection.addClass("hidden");
-    $aboutSection.addClass("hidden");
-    $("#controls").show();
-
-    const allItems = [
-      ...wishlist.cd.map(a => ({ ...a, format: "CD" })),
-      ...wishlist.vinyl.map(a => ({ ...a, format: "Vinyl" })),
-      ...wishlist.else.map(a => ({ ...a, format: "Else" })),
-    ];
-    const purchasedItems = allItems.filter(a =>
-      purchasedIds.has(`${a.master_id}-${a.format.toLowerCase()}`)
-    );
-
-    if (purchasedItems.length === 0) {
-      $container.html('<p id="empty-message">Nothing purchased yet!</p>');
-    } else {
-      renderItems(purchasedItems, true);
-    }
-  }
-
-  function showAbout() {
-    currentView = "about";
-    $aboutTab.addClass("active");
-    $cdTab.removeClass("active");
-    $vinylTab.removeClass("active");
-    $elseTab.removeClass("active");
-    $purchasedTab.removeClass("active");
-
-    $aboutSection.removeClass("hidden");
-    $elseSection.addClass("hidden");
-    $container.empty();
-    $("#controls").hide();
-  }
-
-  $cdTab.on("click", () => showCD());
-  $vinylTab.on("click", () => showVinyl());
-  $elseTab.on("click", () => showElse());
-  $purchasedTab.on("click", () => loadPurchasedIds(showPurchased));
-  $aboutTab.on("click", () => showAbout());
-
-  $sortSelect.on("change", () => {
-    if (currentView === "cd") showCD();
-    else if (currentView === "vinyl") showVinyl();
-    else if (currentView === "else") showElse();
-    else if (currentView === "purchased") showPurchased();
-  });
-
-  $container.on("click", ".mark-purchased-btn", function() {
-    const $card = $(this).closest(".album-card");
-    const albumId = $card.data("id");
-    const albumName = $card.find("h2").text();
-
-    if (!confirm(`Mark "${albumName}" as purchased?`)) {
-      return;
-    }
-
-    db.collection("purchases").doc(albumId).set({
-      purchased: true,
+async function setPurchased(item, purchased) {
+  const verb = purchased ? "Mark" : "Unmark";
+  if (!confirm(`${verb} "${item.name}" as purchased?`)) return false;
+  try {
+    await db.collection("purchases").doc(item.id).set({
+      purchased,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    }).then(() => {
-      purchasedIds.add(albumId);
-      $card.find(".purchase-status").text("✅ Purchased");
-      $card.find(".mark-purchased-btn").remove();
-    }).catch(err => {
-      alert("Error marking as purchased. Please try again.");
-      console.error(err);
     });
-  });
+  } catch (err) {
+    console.error(err);
+    alert(`Couldn't ${verb.toLowerCase()} that. Please try again.`);
+    return false;
+  }
+  logHistory(item, purchased);
+  if (purchased) {
+    state.purchased.add(item.id);
+    state.justMarked.add(item.id);
+  } else {
+    state.purchased.delete(item.id);
+  }
+  render();
+  renderPurchased();
+  return true;
+}
 
-  $container.on("click", ".unmark-purchased-btn", function() {
-    const $card = $(this).closest(".album-card");
-    const albumId = $card.data("id");
-    const albumName = $card.find("h2").text();
+async function loadPurchased() {
+  const snapshot = await db.collection("purchases").get();
+  state.purchased = new Set(snapshot.docs.filter(d => d.data().purchased).map(d => d.id));
+}
 
-    if (!confirm(`Unmark "${albumName}" as purchased?`)) {
-      return;
-    }
+$("search").addEventListener("input", e => { state.search = e.target.value; render(); });
+$("sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
 
-    db.collection("purchases").doc(albumId).set({
-      purchased: false,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    }).then(() => {
-      purchasedIds.delete(albumId);
-      $card.remove();
-    }).catch(err => {
-      alert("Error unmarking purchase. Please try again.");
-      console.error(err);
-    });
-  });
+$("dialog-close").addEventListener("click", () => dialog.close());
+dialog.addEventListener("close", stopGallery);
+dialog.addEventListener("click", e => { if (e.target === dialog) dialog.close(); });
+$("dialog-mark").addEventListener("click", async () => {
+  if (await setPurchased(openItem, !isPurchased(openItem))) dialog.close();
+});
 
-  loadJsonFiles(() => loadPurchasedIds(showAbout));
+$("purchased-toggle").addEventListener("click", async e => {
+  const section = $("purchased");
+  const opening = section.hidden;
+  e.currentTarget.setAttribute("aria-expanded", opening);
+  if (opening) {
+    await loadPurchased().catch(console.error);
+    render();
+    renderPurchased();
+  }
+  section.hidden = !opening;
+});
+
+// Init
+Promise.all([
+  fetch("wishlist.json").then(r => r.json()),
+  loadPurchased().catch(err => console.error("Couldn't load purchases", err)),
+]).then(([items]) => {
+  state.items = items;
+  $("empty").textContent = "Nothing matches that. Try a different search or filter.";
+  renderChips();
+  render();
+}).catch(err => {
+  console.error(err);
+  $("empty").textContent = "Couldn't load the wishlist. Try refreshing.";
+  $("empty").hidden = false;
 });

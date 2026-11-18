@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <!-- one raised square of chocolate -->
+    <g id="square">
+      <rect width="56" height="50" rx="5" fill="#6e4130"/>
+      <rect x="6" y="6" width="44" height="38" rx="3" fill="#86513c"/>
+      <path d="M6 6 H50 L44 12 H12 V38 L6 44 Z" fill="#9a6149"/>
+    </g>
+  </defs>
+  <g transform="rotate(-14 200 200)">
+    <!-- bar: 2 x 3 squares showing above the wrapper -->
+    <rect x="128" y="64" width="144" height="190" rx="10" fill="#5c3526"/>
+    <use href="#square" x="136" y="72"/>
+    <use href="#square" x="208" y="72"/>
+    <use href="#square" x="136" y="130"/>
+    <use href="#square" x="208" y="130"/>
+    <use href="#square" x="136" y="188"/>
+    <use href="#square" x="208" y="188"/>
+    <!-- torn foil edge -->
+    <path d="M120 210 L136 200 L150 214 L166 198 L182 212 L198 199 L214 213 L230 198 L246 212 L262 200 L280 212 L280 236 L120 236 Z" fill="#e9e4f2" stroke="#d3cbe3" stroke-width="2"/>
+    <!-- wrapper with a label band -->
+    <rect x="116" y="226" width="168" height="120" rx="8" fill="#c9b6f0" stroke="#b39ee3" stroke-width="2"/>
+    <rect x="116" y="262" width="168" height="40" fill="#f2b8c6"/>
+    <rect x="160" y="276" width="80" height="12" rx="6" fill="#ffffff" opacity=".75"/>
+  </g>
+</svg>

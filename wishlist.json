@@ -1,0 +1,537 @@
+[
+  {
+    "id": "205473-cd",
+    "name": "Fear of a Mixed Planet - Shock G",
+    "category": "music",
+    "price": 20,
+    "price_max": 30,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=fear+of+a+mixed+planet+cd&_odkw=fear+of+a+mixed+planet&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/BuyOccJENMoqIfpm.png",
+    "notes": ""
+  },
+  {
+    "id": "born-in-roma",
+    "name": "Donna Born In Roma - Valentino",
+    "category": "fragrance",
+    "price": 36,
+    "price_max": 170,
+    "url": "https://www.sephora.com/product/born-in-roma-P449116",
+    "image": "images/born-in-roma.jpg",
+    "notes": "The original pink bottle, not any of the other colors."
+  },
+  {
+    "id": "nE251WERImQ2qhJ3",
+    "name": "2026 Topps Update #US73 Caleb Durbin",
+    "category": "collectibles",
+    "price": 1.5,
+    "url": "https://www.amazon.com/TOPPS-UPDATE-CALEB-DURBIN-BOSTON/dp/B0HPQX13K5",
+    "image": "images/nE251WERImQ2qhJ3.jpg"
+  },
+  {
+    "id": "c7m2e5J5b05vy11H",
+    "name": "Eva unit 02 Mouse Pad",
+    "category": "tech",
+    "price": 18.55,
+    "url": "https://www.redbubble.com/i/mouse-pad/Evangelion-Eva-Unit-02-Panel-by-ardeviants/158924751/2mh5",
+    "image": "images/c7m2e5J5b05vy11H.webp",
+    "notes": "Style: Mouse Pad\nSize: Small"
+  },
+  {
+    "id": "aPQYg8TdMtrZiMtg",
+    "name": "Crop Top (PINK, SIZE 4)",
+    "category": "clothes",
+    "price": 19.99,
+    "url": "https://m.shopcider.com/product/detail?pid=114031680&style_id=2069953",
+    "image": "images/aPQYg8TdMtrZiMtg.png",
+    "notes": "Make sure it’s the pink one and size 4!!"
+  },
+  {
+    "id": "meow",
+    "name": "Meow! - Katy Perry",
+    "category": "fragrance",
+    "price": 20,
+    "price_max": 30,
+    "url": "https://www.walmart.com/ip/47619460",
+    "image": "images/meow.jpg"
+  },
+  {
+    "id": "AWdheUbLuzRio2cV",
+    "name": "Dear God - The Pretty Reckless",
+    "category": "music",
+    "price": 12,
+    "url": "https://store.fearlessrecords.com/collections/the-pretty-reckless/products/the-pretty-reckless-dear-god-cd",
+    "image": "images/AWdheUbLuzRio2cV.webp",
+    "notes": "Also available at Target, Barnes & Noble, etc..."
+  },
+  {
+    "id": "QcntelkbWgCIFl31",
+    "name": "Born Again - Danger Mouse & Jemini",
+    "category": "music",
+    "price": 15,
+    "price_max": 25,
+    "image": "images/QcntelkbWgCIFl31.png",
+    "notes": "Hard to find online, but there should be a copy at Volta Records in Greenfield (hip hop section, under D)."
+  },
+  {
+    "id": "gPxDF5nUFsJXvmSh",
+    "name": "\"Fried-Ray Fish Fry\" T-Shirt [S, Blue]",
+    "category": "clothes",
+    "price": 35,
+    "url": "https://aaronsartroom.ink/products/friday-fish-fry?variant=67748258349332",
+    "image": "images/gPxDF5nUFsJXvmSh.webp",
+    "notes": "Make sure it's size: Small and color: Blue"
+  },
+  {
+    "id": "FPfjYb4auzJC8rOT",
+    "name": "Evangelion Finally",
+    "category": "music",
+    "price": 15,
+    "price_max": 20,
+    "url": "https://www.amazon.com/Evangelion-Finally-Various-Artists/dp/B08NMKQKJ4/ref=sr_1_1?crid=1DMZX1KVFOMSB&dib=eyJ2IjoiMSJ9.qd8uFQuoBAlEC5rVKIUFr0OJoefF9UMuXjVn8eLhL1uVf-6gG8cIk6ZZ24NqpXqhtphqjL4u2_vMtYDUpTFVb3mSuAdPPLG5SD6QEhIupgNkaFWaltPrVsuo4biyPIe5iqT6VXRbT9pQEE05PVo85Zrv2MPitJaIA0QPODLOzAVgnb4esCR6QOpVEVmOLlJgfC3zk3Fu3uuc2-oF23n5rJXwgPVI2SEP8kywu7w22XI.G8Xd_3N_vdXTvD_cqTxax5mE1qS9DdwPvg2iBvJkwdY&dib_tag=se&keywords=evangelion+cd&qid=1764467663&sprefix=evangelion+cd%2Caps%2C98&sr=8-1",
+    "image": "images/FPfjYb4auzJC8rOT.png",
+    "notes": ""
+  },
+  {
+    "id": "perfume-samples",
+    "name": "Perfume samples",
+    "category": "fragrance",
+    "image": "images/perfume-samples.svg",
+    "notes": "Samples of anything are welcome! I like warm/sweet scents (vanilla, amber, musk, lavender) and usually don't like soapy, \"clean\", or coconut.",
+    "unlimited": true,
+    "catchall": true,
+    "tried": {
+      "like": [
+        {
+          "name": "Mugler Angel",
+          "image": "images/perfumes/704.jpg"
+        },
+        {
+          "name": "Katy Perry Meow",
+          "image": "images/perfumes/13710.jpg"
+        },
+        {
+          "name": "Dolce&Gabbana The One",
+          "image": "images/perfumes/698.jpg"
+        },
+        {
+          "name": "Carolina Herrera Good Girl",
+          "image": "images/perfumes/39681.jpg"
+        },
+        {
+          "name": "Valentino Donna Born In Roma",
+          "image": "images/perfumes/55805.jpg"
+        },
+        {
+          "name": "Tom Ford Black Orchid",
+          "image": "images/perfumes/1018.jpg"
+        },
+        {
+          "name": "Carolina Herrera Bad Boy",
+          "image": "images/perfumes/55449.jpg"
+        },
+        {
+          "name": "Carolina Herrera Good Girl Blush",
+          "image": "images/perfumes/78576.jpg"
+        },
+        {
+          "name": "Miu Miu Miutine",
+          "image": "images/perfumes/113885.jpg"
+        },
+        {
+          "name": "Carolina Herrera 212 Sexy",
+          "image": "images/perfumes/306.jpg"
+        },
+        {
+          "name": "Prada Paradoxe",
+          "image": "images/perfumes/75668.jpg"
+        },
+        {
+          "name": "Mugler Angel Nova",
+          "image": "images/perfumes/61519.jpg"
+        },
+        {
+          "name": "Carolina Herrera Very Good Girl",
+          "image": "images/perfumes/65560.jpg"
+        },
+        {
+          "name": "Phlur Vanilla Skin Fragrance Mist",
+          "image": "images/perfumes/87258.jpg"
+        },
+        {
+          "name": "Valentino Donna Born in Roma Green Stravaganza",
+          "image": "images/perfumes/88988.jpg"
+        },
+        {
+          "name": "Phlur Strawberry Letter",
+          "image": "images/perfumes/89909.jpg"
+        },
+        {
+          "name": "Prada Paradoxe Radical Essence",
+          "image": "images/perfumes/108298.jpg"
+        },
+        {
+          "name": "Valentino Donna Born in Roma Purple Melancholia",
+          "image": "images/perfumes/120985.jpg"
+        }
+      ],
+      "ok": [
+        {
+          "name": "Camille Rochelle Passion Pour Femme",
+          "image": "images/perfumes/87304.jpg"
+        },
+        {
+          "name": "Clean Apple Blossom",
+          "image": "images/perfumes/82586.jpg"
+        },
+        {
+          "name": "Dolce&Gabbana Light Blue",
+          "image": "images/perfumes/485.jpg"
+        },
+        {
+          "name": "Dolce&Gabbana The One Gold For Men",
+          "image": "images/perfumes/69000.jpg"
+        },
+        {
+          "name": "Rabanne 1 Million Lucky",
+          "image": "images/perfumes/48903.jpg"
+        },
+        {
+          "name": "Givenchy Dahlia Divin",
+          "image": "images/perfumes/25972.jpg"
+        },
+        {
+          "name": "DKNY Be Delicious",
+          "image": "images/perfumes/498.jpg"
+        },
+        {
+          "name": "Burberry Goddess",
+          "image": "images/perfumes/83483.jpg"
+        },
+        {
+          "name": "Mugler Alien Goddess Intense",
+          "image": "images/perfumes/74871.jpg"
+        },
+        {
+          "name": "Dolce&Gabbana Devotion",
+          "image": "images/perfumes/84951.jpg"
+        },
+        {
+          "name": "Joliot Descartes Excite",
+          "image": "images/perfumes/56016.jpg"
+        },
+        {
+          "name": "Mugler Angel Elixir",
+          "image": "images/perfumes/78581.jpg"
+        },
+        {
+          "name": "Valentino Donna Born in Roma Extradose",
+          "image": "images/perfumes/101384.jpg"
+        },
+        {
+          "name": "Billie Eilish Eilish No 2",
+          "image": "images/perfumes/76532.jpg"
+        }
+      ],
+      "dislike": [
+        {
+          "name": "Michael Kors",
+          "image": "images/perfumes/2418.jpg"
+        },
+        {
+          "name": "Giorgio Armani Acqua di Gioia",
+          "image": "images/perfumes/8442.jpg"
+        },
+        {
+          "name": "Phlur Father Figure",
+          "image": "images/perfumes/83775.jpg"
+        },
+        {
+          "name": "Bvlgari Omnia Crystalline",
+          "image": "images/perfumes/18894.jpg"
+        },
+        {
+          "name": "Gucci Flora Gorgeous Gardenia",
+          "image": "images/perfumes/68578.jpg"
+        },
+        {
+          "name": "Viktor&Rolf Spicebomb",
+          "image": "images/perfumes/13857.jpg"
+        },
+        {
+          "name": "Elizabeth Arden Red Door",
+          "image": "images/perfumes/86.jpg"
+        },
+        {
+          "name": "Michael Kors White",
+          "image": "images/perfumes/27494.jpg"
+        }
+      ]
+    }
+  },
+  {
+    "id": "RtIDe4qnydiUxHXC",
+    "name": "Power in Numbers - Jurassic 5",
+    "category": "music",
+    "price": 5,
+    "price_max": 12,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=jurassic+5+power+in+numbers+cd&_odkw=3+feet+high+and+rising+cd&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/RtIDe4qnydiUxHXC.jpg",
+    "notes": ""
+  },
+  {
+    "id": "8357-cd",
+    "name": "3 Feet High and Rising - De La Soul",
+    "category": "music",
+    "price": 10,
+    "price_max": 20,
+    "url": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=3+feet+high+and+rising+cd&_odkw=collision+course+jay+z+cd&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1311",
+    "image": "images/bjiwCNU4CNFRCnoD.jpg",
+    "notes": ""
+  },
+  {
+    "id": "130142-cd",
+    "name": "Da Derrty Versions (The Reinvention) - Nelly",
+    "category": "music",
+    "price": 3,
+    "price_max": 8,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=Da+Derrty+Versions+%28The+Reinvention%29+cd&_odkw=Da+Derrty+Versions+%28The+Reinvention%29&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/RFneXuou63mfi92b.jpg",
+    "notes": ""
+  },
+  {
+    "id": "47318-cd",
+    "name": "Collision Course - Jay Z & Linkin Park",
+    "category": "music",
+    "price": 5,
+    "price_max": 10,
+    "url": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=collision+course+jay+z+cd&_sacat=0&_trksid=p4624852.m570.l1313",
+    "image": "images/yHTzbh3M2nrYlIOa.jpg",
+    "notes": ""
+  },
+  {
+    "id": "jMyc5jvZ5Lhb5wS5",
+    "name": "you seem pretty sad for a girl so in love - Olivia Rodrigo",
+    "category": "music",
+    "price": 14,
+    "url": "https://store.oliviarodrigo.com/collections/girlsoinlove/products/you-seem-pretty-sad-for-a-girl-so-in-love-cd",
+    "image": "images/jMyc5jvZ5Lhb5wS5.png",
+    "notes": "Also available at Target, Barnes & Noble, etc..."
+  },
+  {
+    "id": "97485-cd",
+    "name": "The Predator - Ice Cube",
+    "category": "music",
+    "price": 5,
+    "price_max": 10,
+    "url": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=the+predator+ice+cube+cd&_sacat=0&_trksid=p2332490.m570.l1311",
+    "image": "images/wy4eJDsG2LUtaAzc.jpg",
+    "notes": ""
+  },
+  {
+    "id": "X2NseIfvRo7bQgrl",
+    "name": "Apple 2 Pack Lightning to 3.5mm Headphone Jack Adapter",
+    "category": "tech",
+    "price": 9,
+    "url": "https://www.amazon.com/dp/B09L951YB4?psc=1",
+    "image": "images/X2NseIfvRo7bQgrl.jpg",
+    "notes": ""
+  },
+  {
+    "id": "hnlc9fOBmIu4aZDi",
+    "name": "4 Port USB Hub/Splitter",
+    "category": "tech",
+    "price": 10,
+    "url": "https://www.amazon.com/dp/B0CN3F9Y1Z/",
+    "image": "images/hnlc9fOBmIu4aZDi.jpg",
+    "notes": ""
+  },
+  {
+    "id": "oWGut2HVi7pbGpSK",
+    "name": "Cider Denim Low Rise Solid Bowknot Pocket Wide Leg Jeans",
+    "category": "clothes",
+    "price": 44.9,
+    "url": "https://m.shopcider.com/goods/cider-denim-mid-rise-solid-bowknot-wide-leg-jeans-110376211?businessTracking=eyJmaXJzdEltYWdlVHlwZSI6Iuato%2BmdouWbviIsIml0ZW1UeXBlIjowLCJsaXN0SWQiOjAsImxpc3RUaXRsZSI6ImZhdm9yX2xpc3QiLCJsaXN0VHlwZSI6NiwicHJvZHVjdFByaW1hcnlJbWFnZUZsYWciOnRydWUsInNhbGVQcmljZSI6NDQuOSwic2tjRmlyc3RJbWciOiIxNzE4NDIzMjE4MDAwLWtwNmpuQi5qcGciLCJzcHUiOjExMDM3NjIxMSwic3B1Q29kZSI6IkNEMjAyNDA0MDE0NjU4MDNKTiIsInRyYWNraW5nSWQiOiJkZjAwYmQ3YS0wYTNiLTRiOGEtYjYxNi0zMjY1NjEwM2FkZTIiLCJnYUxpc3RJZCI6MCwiZ2FMaXN0TmFtZSI6ImZhdm9yX2xpc3QiLCJjaWRlckxpc3RJZCI6NiwicCI6MTEwMzc2MjExLCJjaWRlckxpc3ROYW1lIjoiZmF2b3JfbGlzdCIsInNlbGVjdFNrdUluZGV4IjowLCJtb2R1bGVUaXRsZSI6MSwic2hvcFBhZ2UiOjEsInNob3BJbmRleCI6MTUsImxpc3RTb3J0IjoiIiwibGlzdEZpbHRlciI6IiIsImxpbmtVcmwiOiIiLCJvcGVyYXRpb25Db250ZW50IjoiIiwib3BlcmF0aW9uSW1hZ2UiOiIiLCJvcGVyYXRpb25wYWdlVGl0bGUiOiIiLCJvcGVyYXRpb25Qb3NpdGlvbiI6IiIsIm9wZXJhdGlvblR5cGUiOiIiLCJwcm9kdWN0UG9zaXRpb24iOiIxNiIsImxpc3ROYW1lIjoicmVjb21tZW5kX2xpc3Rfd2lzaHMiLCJzdHJhdGVneU5hbWUiOiIiLCJtb2R1bGVUeXBlIjoiIn0%3D&ciderListId=6&ciderListName=favor_list&gaListId=0&gaListName=favor_list&listName=recommend_list_wishs&listTitle=favor_list&listType=6&moduleTitle=1&p=110376211&productPosition=16&product_position=16&selectSkuIndex=0&shopIndex=15&shopPage=1&style_id=2005876",
+    "image": "images/oWGut2HVi7pbGpSK.png",
+    "notes": "Size medium!!"
+  },
+  {
+    "id": "good-girl",
+    "name": "Good Girl - Carolina Herrera",
+    "category": "fragrance",
+    "price": 35,
+    "price_max": 180,
+    "url": "https://www.sephora.com/product/good-girl-P420533",
+    "image": "images/good-girl.jpg",
+    "notes": "The original dark blue bottle, not any of the other colors."
+  },
+  {
+    "id": "56124-cd",
+    "name": "Labcabincalifornia - The Pharcyde",
+    "category": "music",
+    "price": 5,
+    "price_max": 15,
+    "url": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=labcabincalifornia+cd&_sacat=0&_trksid=p4624852.m570.l1313",
+    "image": "images/Kbem2uC6obgFMOys.jpg",
+    "notes": ""
+  },
+  {
+    "id": "QY9T58DRmvz834iU",
+    "name": "Velvet Star Pattern Bell Sleeve Crop Top",
+    "category": "clothes",
+    "price": 14.95,
+    "url": "https://m.shopcider.com/goods/velvet-geometric-ruffle-sleeve-top?businessTracking=eyJmaXJzdEltYWdlVHlwZSI6Iuato%2BmdouWbviIsIml0ZW1UeXBlIjowLCJsaXN0SWQiOjAsImxpc3RUaXRsZSI6InNlYXJjaF9saXN0X1doaW1zeWdvdGgiLCJsaXN0VHlwZSI6NCwibW9kdWxlSWQiOjEsIm9yaWdpbmFsUHJpY2UiOjI5LjksInByb2R1Y3RQcmltYXJ5SW1hZ2VGbGFnIjp0cnVlLCJzYWxlUHJpY2UiOjguOTcsInNrY0ZpcnN0SW1nIjoiMTY2MDMwMTEzNTAwMC1Hd0Q0aHguanBnIiwic3B1IjoxMDIyNDE2LCJzcHVDb2RlIjoiQ0QyMDIyMDcyNDE0MTk1N0xUIiwic3RyYXRlZ3lOYW1lIjoic2VhcmNoX3JlcV90aW1lOjE3ODM0MzE3NjQ2OTktYWxsX3VzZXJfZXhwXzI2MDc6YmFzZSIsInRyYWNraW5nSWQiOiJlMjlkOTVjNS05YTAxLTRmNDAtYjAzZS05M2M2OWEzNzhkZWEiLCJnYUxpc3RJZCI6MCwiZ2FMaXN0TmFtZSI6InNlYXJjaF9saXN0X1doaW1zeWdvdGgiLCJjaWRlckxpc3RJZCI6NCwicCI6MTAyMjQxNiwiY2lkZXJMaXN0TmFtZSI6InNlYXJjaF9saXN0X1doaW1zeWdvdGgiLCJzZWxlY3RTa3VJbmRleCI6MCwibW9kdWxlVGl0bGUiOjEsInNob3BQYWdlIjoxLCJzaG9wSW5kZXgiOjAsImxpc3RTb3VyY2UiOiJob21lcGFnZTtzZWFyY2hfd29yZDswIiwibGlzdFNvcnQiOiIiLCJsaXN0RmlsdGVyIjoiIiwibGlua1VybCI6IiIsIm9wZXJhdGlvbkNvbnRlbnQiOiIiLCJvcGVyYXRpb25JbWFnZSI6IiIsIm9wZXJhdGlvbnBhZ2VUaXRsZSI6IiIsIm9wZXJhdGlvblBvc2l0aW9uIjoiIiwib3BlcmF0aW9uVHlwZSI6IiIsInByb2R1Y3RQb3NpdGlvbiI6IjEiLCJsaXN0TmFtZSI6InJlY29tbWVuZF9saXN0X3NlYXJjaCIsIm1vZHVsZVR5cGUiOiIifQ%3D%3D&ciderListId=4&ciderListName=search_list_Whimsygoth&gaListId=0&gaListName=search_list_Whimsygoth&listId=0&listName=recommend_list_search&listSource=homepage%3Bsearch_word%3B0&listTitle=search_list_Whimsygoth&listType=4&moduleTitle=1&p=1022416&productPosition=1&product_position=1&selectSkuIndex=0&shopIndex=0&shopPage=1&style_id=122599",
+    "image": "images/QY9T58DRmvz834iU.webp",
+    "notes": "Size 4!!"
+  },
+  {
+    "id": "angel",
+    "name": "Angel - Mugler",
+    "category": "fragrance",
+    "price": 37,
+    "price_max": 150,
+    "url": "https://www.sephora.com/product/angel-P9864",
+    "image": "images/angel.jpg",
+    "notes": "The original light blue bottle, not any of the other versions."
+  },
+  {
+    "id": "Fgu7Ba0SuSOXjbiA",
+    "name": "Midnight Marauders - A Tribe Called Quest",
+    "category": "music",
+    "price": 5,
+    "price_max": 10,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=Midnight+Marauders+cd&_odkw=People%27s+Instinctive+Travels+And+The+Paths+Of+Rhythm+cd&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/Fgu7Ba0SuSOXjbiA.jpg",
+    "notes": ""
+  },
+  {
+    "id": "BiKVouQzh81rzKNY",
+    "name": "Milka Oreo",
+    "category": "snacks",
+    "price": 3,
+    "image": "images/BiKVouQzh81rzKNY.webp",
+    "notes": "",
+    "unlimited": true
+  },
+  {
+    "id": "4FA22Q8hzUdT6Url",
+    "name": "Milka Strawberry",
+    "category": "snacks",
+    "price": 3,
+    "image": "images/4FA22Q8hzUdT6Url.webp",
+    "notes": "",
+    "unlimited": true
+  },
+  {
+    "id": "BkI5PLdryxXV8kWA",
+    "name": "Pirouline/Pirouettes",
+    "category": "snacks",
+    "price": 7,
+    "image": "images/BkI5PLdryxXV8kWA.jpg",
+    "notes": "",
+    "unlimited": true
+  },
+  {
+    "id": "D9wEhjs2nbFyA9dy",
+    "name": "Pejoy",
+    "category": "snacks",
+    "price": 3,
+    "image": "images/D9wEhjs2nbFyA9dy.jpg",
+    "notes": "",
+    "unlimited": true
+  },
+  {
+    "id": "39760-cd",
+    "name": "La Sexorcisto: Devil Music - White Zombie",
+    "category": "music",
+    "price": 5,
+    "price_max": 10,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=La+Sexorcisto%3A+Devil+Music+Vol.+1+cd&_odkw=Let+The+Rain+Fall+cd&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/87846QLLfws8leRP.jpg",
+    "notes": ""
+  },
+  {
+    "id": "Nz4suMEx7GF2Z3oW",
+    "name": "Hoochiefied Funk - Raw Fusion",
+    "category": "music",
+    "price": 15,
+    "price_max": 20,
+    "url": "https://www.ebay.com/sch/i.html?_from=R40&_nkw=Hoochiefied+Funk+cd&_odkw=Hoochiefied+Funk&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/Nz4suMEx7GF2Z3oW.jpg",
+    "notes": ""
+  },
+  {
+    "id": "ptTb1KP5XO1EU7On",
+    "name": "Live From The Styleetron - Raw Fusion",
+    "category": "music",
+    "price": 10,
+    "price_max": 15,
+    "url": "https://www.ebay.com/sch/i.html?LH_TitleDesc=0&_from=R40&_nkw=Live+From+The+Styleetron+cd&_odkw=Hoochiefied+Funk+cd&_osacat=0&_sacat=0&_trksid=p2334524.m570.l1313",
+    "image": "images/ptTb1KP5XO1EU7On.jpg",
+    "notes": ""
+  },
+  {
+    "id": "ljPEDYdmiNYamZJP",
+    "name": "Wingull Pokemon Card",
+    "category": "collectibles",
+    "price": 0.25,
+    "image": "images/ljPEDYdmiNYamZJP.jpg",
+    "notes": "any Wingull variety!",
+    "unlimited": true,
+    "images": [
+      "images/wingull/ex1-77.webp",
+      "images/wingull/ex2-84.webp",
+      "images/wingull/ex8-81.webp",
+      "images/wingull/ex14-70.webp",
+      "images/wingull/dp4-95.webp",
+      "images/wingull/pl4-80.webp",
+      "images/wingull/pl4-81.webp",
+      "images/wingull/xy6-18.webp",
+      "images/wingull/sm1-37.webp",
+      "images/wingull/sm7-111.webp",
+      "images/wingull/swsh2-41.webp",
+      "images/wingull/sv02-158.webp",
+      "images/wingull/sv04.5-203.webp",
+      "images/wingull/sv09-038.webp"
+    ]
+  },
+  {
+    "id": "RBBW6d5BKtRiazPd",
+    "name": "German pokemon cards (read description)",
+    "category": "collectibles",
+    "price": 2,
+    "image": "images/RBBW6d5BKtRiazPd.jpg",
+    "notes": "German cards have \"KP\" in the top right instead of \"HP\". No idea where you can get them but I've been gifted them before. Looking especially for \"Schiggy\", \"Pummeluff\", and \"Schlurp\", but any German cards are awesome to have. Try not to spend too much on these lol.",
+    "unlimited": true
+  },
+  {
+    "id": "ezk9F2pM4EqGdagg",
+    "name": "Gift cards (read description)",
+    "category": "giftcards",
+    "image": "images/gift-cards.svg",
+    "notes": "",
+    "unlimited": true,
+    "catchall": true,
+    "list": [
+      "Culver's",
+      "Amazon",
+      "Kwik Trip"
+    ]
+  },
+  {
+    "id": "chocolate",
+    "name": "Chocolate (read description)",
+    "category": "snacks",
+    "image": "images/chocolate.svg",
+    "notes": "",
+    "unlimited": true,
+    "catchall": true,
+    "list": [
+      "Kit Kats",
+      "Peanut M&Ms",
+      {
+        "name": "Reese's Peanut Butter Cups",
+        "note": "The standard ones with ridges, not any of the holiday ones"
+      }
+    ]
+  }
+]

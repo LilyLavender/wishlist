@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <linearGradient id="glass" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".7"/>
+      <stop offset=".35" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity=".25"/>
+    </linearGradient>
+  </defs>
+  <!-- three sample vials: cap, glass, liquid, label -->
+  <g transform="translate(108 70) rotate(-8)">
+    <rect x="0" y="0" width="44" height="46" rx="6" fill="#2b2633"/>
+    <rect x="4" y="44" width="36" height="200" rx="14" fill="#f3eefb" stroke="#d9d1e8" stroke-width="2"/>
+    <rect x="7" y="110" width="30" height="131" rx="11" fill="#f2b8c6"/>
+    <rect x="4" y="44" width="36" height="200" rx="14" fill="url(#glass)"/>
+    <rect x="9" y="140" width="26" height="40" rx="3" fill="#ffffff" opacity=".9"/>
+  </g>
+  <g transform="translate(178 60)">
+    <rect x="0" y="0" width="44" height="46" rx="6" fill="#2b2633"/>
+    <rect x="4" y="44" width="36" height="220" rx="14" fill="#f3eefb" stroke="#d9d1e8" stroke-width="2"/>
+    <rect x="7" y="100" width="30" height="161" rx="11" fill="#c9b6f0"/>
+    <rect x="4" y="44" width="36" height="220" rx="14" fill="url(#glass)"/>
+    <rect x="9" y="150" width="26" height="40" rx="3" fill="#ffffff" opacity=".9"/>
+  </g>
+  <g transform="translate(248 76) rotate(8)">
+    <rect x="0" y="0" width="44" height="46" rx="6" fill="#2b2633"/>
+    <rect x="4" y="44" width="36" height="200" rx="14" fill="#f3eefb" stroke="#d9d1e8" stroke-width="2"/>
+    <rect x="7" y="120" width="30" height="121" rx="11" fill="#f5d9a8"/>
+    <rect x="4" y="44" width="36" height="200" rx="14" fill="url(#glass)"/>
+    <rect x="9" y="140" width="26" height="40" rx="3" fill="#ffffff" opacity=".9"/>
+  </g>
+</svg>
